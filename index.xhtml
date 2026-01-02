@@ -20,13 +20,13 @@
         
         <div id="preview">
             <img src="tu-preview-censurada.jpg" alt="Preview" class="censored" />
-            <p class="price">Precio: 0.005 ETH</p>
+            <p class="price">Precio: 0.0050 ETH</p>
             <button onclick="payWithMetaMask()">Pagar con MetaMask para Ver</button>
         </div>
 
         <div id="video-container">
             <video id="premiumVideo" controls="controls" width="100%">
-                <source src="TU_VIDEO_PRIVADO_URL.mp4" type="video/mp4" />
+                <source src="https://gray-immediate-bug-174.mypinata.cloud/ipfs/bafybeiao663fmmikzclxrbafybikbg7ee3ql7v6bffkkfwxetwfqjn2gxi/.mp4" type="video/mp4" />
                 Tu navegador no soporta video.
             </video>
         </div>
@@ -42,7 +42,7 @@
                 try {
                     // Reemplaza con tu dirección de billetera
                     const tx = await signer.sendTransaction({
-                        to: "TU_DIRECCION_DE_BILLETERA_AQUI",
+                        to: "0xf984a761d8FB7AF256f4F1c339E989D0c0b5a0f8",
                         value: ethers.utils.parseEther("0.005") 
                     });
                     
