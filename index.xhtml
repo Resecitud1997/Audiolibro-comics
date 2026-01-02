@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+<head>
+    <title>Comic VIP - Acceso Exclusivo</title>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <style type="text/css">
+        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; padding: 50px; }
+        .container { border: 1px solid #333; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto; }
+        .censored { filter: blur(20px); pointer-events: none; user-select: none; width: 100%; }
+        #video-container { display: none; margin-top: 20px; }
+        button { background: #f3841d; border: none; padding: 15px 30px; color: white; font-weight: bold; cursor: pointer; border-radius: 5px; }
+        .price { font-size: 1.5em; color: #00ff00; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Audiocómic IA: Edición Sin Censura</h1>
+        <p>Conecta tu MetaMask para desbloquear el contenido premium.</p>
+        
+        <div id="preview">
+            <img src="tu-preview-censurada.jpg" alt="Preview" class="censored" />
+            <p class="price">Precio: 0.005 ETH</p>
+            <button onclick="payWithMetaMask()">Pagar con MetaMask para Ver</button>
+        </div>
+
+        <div id="video-container">
+            <video id="premiumVideo" controls="controls" width="100%">
+                <source src="TU_VIDEO_PRIVADO_URL.mp4" type="video/mp4" />
+                Tu navegador no soporta video.
+            </video>
+        </div>
+    </div>
+
+    <script type="application/javascript">
+        async function payWithMetaMask() {
+            if (typeof window.ethereum !== 'undefined') {
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                await provider.send("eth_requestAccounts", []);
+                const signer = provider.getSigner();
+                
+                try {
+                    // Reemplaza con tu dirección de billetera
+                    const tx = await signer.sendTransaction({
+                        to: "TU_DIRECCION_DE_BILLETERA_AQUI",
+                        value: ethers.utils.parseEther("0.005") 
+                    });
+                    
+                    alert("Transacción enviada. Esperando confirmación...");
+                    await tx.wait();
+                    
+                    // Desbloqueo visual
+                    document.getElementById('preview').style.display = 'none';
+                    document.getElementById('video-container').style.display = 'block';
+                    alert("¡Pago confirmado! Disfruta el contenido.");
+                } catch (err) {
+                    alert("Error en la transacción o rechazada.");
+                }
+            } else {
+                alert("Por favor, instala MetaMask.");
+            }
+        }
+    </script>
+</body>
+</html>
